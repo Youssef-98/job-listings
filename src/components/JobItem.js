@@ -21,9 +21,7 @@ const JobItem = ({ job, filter }) => {
   }
 
   const handleClick = (items) => {
-    items.map(x => {
-      if(x === )
-    })
+    
   }
 
   // Fetching urls from a local json file didn't work as excpected like with an import
