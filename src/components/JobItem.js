@@ -1,19 +1,37 @@
 import React from 'react';
-import JobCategories from './JobCategories';
 
 // Renders a singular job in the list
-const JobItem = ({ job }) => {
+const JobItem = ({ job, filter }) => {
   // Gives a thicker, cyan-ish left border if the job is featured
   const isFeatured = job => job.featured && 'border-l-4 ';
 
-  console.log(job.languages)
+  // map through languages or tools
+  const loopCategories = (items) => {
+    return items.map(item => {
+      return (
+        <div 
+          className="category"
+          key={item}
+          onClick={filter}
+        >
+          {item}
+        </div>
+      )
+    });
+  }
+
+  const handleClick = (items) => {
+    items.map(x => {
+      if(x === )
+    })
+  }
 
   // Fetching urls from a local json file didn't work as excpected like with an import
   // So I used the require + default combo to make it fully functional with the 'logo' property
   // I also removed './images' from every logo property to make it more unique
   return (
     <div 
-      className={`flex justify-between shadow-lg rounded h-36 border w-4/6 p-8 mb-6 ${isFeatured(job)} bg-white`}
+      className={`flex justify-between shadow-lg rounded h-36 w-4/6 p-8 mb-6 ${isFeatured(job)} bg-white`}
       style={{ 
         borderLeftColor: job.featured && 'hsl(180, 29%, 50%)' 
       }}
@@ -61,10 +79,10 @@ const JobItem = ({ job }) => {
         </div>
       </div>
       <div className="flex justify-end items-center">
-        <div className="category">{job.role}</div>
-        <div className="category">{job.level}</div>
-        <JobCategories items={job.languages} />
-        {job.tools.length > 0 && <JobCategories items={job.tools} />}
+        <div onClick={filter} className="category">{job.role}</div>
+        <div onClick={filter} className="category">{job.level}</div>
+        {loopCategories(job.languages)}
+        {job.tools.length > 0 && loopCategories(job.tools)}
       </div>
     </div>
   )
