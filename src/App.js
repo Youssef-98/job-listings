@@ -1,9 +1,12 @@
 import React from 'react';
+import Header from './components/Header';
+import JobListings from './components/JobListings';
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="bg-blue-600 text-green-200">Job Listings</h1>
+    <div className="App flex flex-col min-h-screen min-w-screen font-bold">
+      <Header />
+      <JobListings />
     </div>
   );
 }

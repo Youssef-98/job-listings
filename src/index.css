@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@500;700&display=swap');
+
+body {
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Spartan', Arial, sans-serif;
+  background-color: hsl(180, 52%, 96%);
+}
+
+#bottom-line {
+  display: flex;
+}
+
+#bottom-line li + li:before {
+  content: " . ";
+}
