@@ -20,3 +20,7 @@ body {
   margin-left: 15px;
   margin-right: 15px;
 }
+
+.category {
+  @apply bg-background text-primary rounded px-3 py-1 ml-4 cursor-pointer hover:bg-primary hover:text-white; 
+}

@@ -6,7 +6,10 @@ import JobItem from './JobItem';
 // Rendering all info inside the JobItem component
 const JobListings = () => {
   return (
-    <main className="flex flex-col flex-grow items-center my-20">
+    <main 
+      className="flex flex-col flex-grow items-center my-20"
+      role="main"
+    >
       {data.map(job => {
         return (
           <JobItem 
