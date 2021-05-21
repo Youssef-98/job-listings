@@ -24,3 +24,11 @@ body {
 .category {
   @apply bg-background text-primary rounded px-3 py-1 ml-4 cursor-pointer hover:bg-primary hover:text-white; 
 }
+
+.filter {
+  @apply flex bg-background text-primary rounded pl-3 py-1 mr-4;
+}
+
+.remove-icon {
+  @apply bg-primary hover:bg-featured cursor-pointer p-2;
+}
