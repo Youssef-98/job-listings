@@ -8,11 +8,25 @@ import JobItem from './JobItem';
 const JobListings = () => {
   const [filters, setFilters] = useState([]);
 
+  // adds the selected filter to show above the list of jobs
   const handleClick = (item) => {
     if(!filters.includes(item)) {
       setFilters([...filters, item]);
     }
   }
+
+  // removes the selected filter
+  const handleRemove = (filter) => {
+    let array = [...filters]; // make a separate copy of the array
+    let index = array.indexOf(filter);
+    if (index !== -1) {
+      array.splice(index, 1);
+      setFilters(array);
+    }
+  }
+
+  // removes all the filters
+  const handleRemoveAll = () => setFilters([]);
 
   useEffect(() => {
     return () => setFilters([]);
@@ -24,23 +38,34 @@ const JobListings = () => {
     >
       {filters.length > 0 && 
         <div
-          className="flex justify-start items-center mobile:px-7 py-5 h-auto shadow-lg 
+          className="flex justify-between items-center mobile:px-7 py-5 h-auto shadow-lg 
           rounded  bg-white w-8/12 relative bottom-10"
-        >
-          {
-            filters.map((filter, id) => {
-              return (
-                <div className="filter" key={id}>
-                  {filter}
-                  <div className="flex justify-center items-center">
-                    <img src={remove} alt="icon-remove" 
-                      className="remove-icon h-full"
-                    />
+        > 
+          <div className="flex flex-wrap flex-1">
+            {
+              filters.map((filter, id) => {
+                return (
+                  <div className="filter" key={id}>
+                    {filter}
+                    <div 
+                      onClick={() => handleRemove(filter)} 
+                      className="flex justify-center items-center"
+                    >
+                      <img src={remove} alt="icon-remove" 
+                        className="remove-icon h-full"
+                      />
+                    </div>
                   </div>
-                </div>
-              )
-            })
-          }
+                )
+              })
+            }
+          </div>
+          <p 
+            onClick={handleRemoveAll}
+            className="hover:underline cursor-pointer text-primary"
+          >
+            Clear
+          </p>
         </div>
       }
       <div className="flex flex-col items-center relative mb-16 mt-10 w-8/12">
