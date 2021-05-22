@@ -65,21 +65,22 @@ const JobListings = () => {
     >
       {filters.length > 0 && 
         <div
-          className="flex justify-between items-center mobile:px-7 py-5 h-auto shadow-lg 
-          rounded  bg-white w-8/12 relative bottom-10"
+          className="flex justify-between items-center px-7 mobile:px-7 py-5 h-auto shadow-lg 
+          rounded  bg-white w-11/12 mobile:w-11/12 desktop:w-8/12 relative bottom-10
+          "
         > 
-          <div className="flex flex-wrap flex-1">
+          <div className="flex flex-wrap flex-1 gap-y-4">
             {
               filters.map((filter, id) => {
                 return (
                   <div className="filter" key={id}>
-                    {filter}
+                    <p className="pr-2 leading-loose">{filter}</p>
                     <div 
                       onClick={() => handleRemove(filter)} 
-                      className="flex justify-center items-center"
+                      className="flex justify-center items-center flex-shrink-0"
                     >
                       <img src={remove} alt="icon-remove" 
-                        className="remove-icon h-full"
+                        className="remove-icon h-full border border-none rounded-r"
                       />
                     </div>
                   </div>
@@ -89,13 +90,13 @@ const JobListings = () => {
           </div>
           <p 
             onClick={handleRemoveAll}
-            className="hover:underline cursor-pointer text-primary"
+            className="hover:underline cursor-pointer hover:text-primary text-bottom-info"
           >
             Clear
           </p>
         </div>
       }
-      <div className="flex flex-col items-center relative mb-16 mt-10 w-8/12">
+      <div className="flex flex-col items-center relative mb-16 mt-10 w-11/12 mobile:w-11/12 desktop:w-8/12">
         {renderFilteredJobs()}
       </div>
     </main>
