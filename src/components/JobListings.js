@@ -28,6 +28,61 @@ const JobListings = () => {
   // removes all the filters
   const handleRemoveAll = () => setFilters([]);
 
+  const renderFilteredJobs = () => {
+    return data.map(job => {
+      if(filters.length === 0) {
+        return (
+          <JobItem 
+            key={job.id}
+            job={job}
+            handleClick={handleClick}
+          />
+        );
+      }
+      else if (filters.length > 0) {
+        return filters.map(filter => {
+          if (job.role === filter) {
+            return (
+              <JobItem 
+                key={job.id}
+                job={job}
+                handleClick={handleClick}
+              />
+            );
+          }
+          if (job.level === filter) {
+            return (
+              <JobItem 
+                key={job.id}
+                job={job}
+                handleClick={handleClick}
+              />
+            );
+          }
+          if (job.languages.includes(filter)) {
+            console.log('found the same language!');
+            return (
+              <JobItem 
+                key={job.id}
+                job={job}
+                handleClick={handleClick}
+              />
+            );
+          }
+          if(job.tools.includes(filter)) {
+            return (
+              <JobItem 
+                key={job.id}
+                job={job}
+                handleClick={handleClick}
+              />
+            );
+          }
+        })
+      }
+    });
+  }
+
   useEffect(() => {
     return () => setFilters([]);
   }, []);
@@ -69,15 +124,7 @@ const JobListings = () => {
         </div>
       }
       <div className="flex flex-col items-center relative mb-16 mt-10 w-8/12">
-        {data.map(job => {
-          return (
-            <JobItem 
-              key={job.id}
-              job={job}
-              handleClick={handleClick}
-            />
-          )
-        })}
+        {renderFilteredJobs()}
       </div>
     </main>
   )
