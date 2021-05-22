@@ -96,7 +96,7 @@ const JobListings = () => {
           </p>
         </div>
       }
-      <div className="flex flex-col items-center relative mb-16 mt-10 w-11/12 mobile:w-11/12 desktop:w-8/12">
+      <div className="flex flex-col items-center relative mb-0 mobile:mt-12 desktop:my-16 mt-10 w-11/12 mobile:w-11/12 desktop:w-8/12">
         {renderFilteredJobs()}
       </div>
     </main>

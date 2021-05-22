@@ -41,7 +41,7 @@ const JobItem = ({ job, handleClick }) => {
   // I also removed './images' from every logo property to make it more unique
   return (
     <div 
-      className={`flex flex-col gap-y-2 mobile:gap-y-3 desktop:gap-y-0 desktop:flex-row desktop:justify-between shadow-lg rounded h-72 w-full mb-12 desktop:h-36 desktop:p-8 desktop:mb-6 
+      className={`flex flex-col gap-y-2 mobile:gap-y-3 desktop:gap-y-0 desktop:flex-row desktop:justify-between shadow-lg rounded h-72 w-full mb-14 desktop:h-36 desktop:p-8 desktop:mb-6 
       ${isFeatured(job)} bg-white`}
       style={{ 
         borderLeftColor: job.featured && 'hsl(180, 29%, 50%)' 
@@ -78,7 +78,10 @@ const JobItem = ({ job, handleClick }) => {
               }
             </div>
           </div>
-          <p className="font-bold text-lg mobile:hover:text-primary mobile:cursor-pointer">{job.position}</p>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" 
+            className="font-bold text-lg mobile:hover:text-primary mobile:cursor-pointer">
+            {job.position}
+          </a>
           <ul
             className="text-bottom-info text-sm flex-grow-0 flex-shrink-0"
             id="bottom-line"
