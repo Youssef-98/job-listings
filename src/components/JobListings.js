@@ -39,37 +39,9 @@ const JobListings = () => {
           />
         );
       }
-      else if (filters.length > 0) {
+      else {
         return filters.map(filter => {
-          if (job.role === filter) {
-            return (
-              <JobItem 
-                key={job.id}
-                job={job}
-                handleClick={handleClick}
-              />
-            );
-          }
-          if (job.level === filter) {
-            return (
-              <JobItem 
-                key={job.id}
-                job={job}
-                handleClick={handleClick}
-              />
-            );
-          }
-          if (job.languages.includes(filter)) {
-            console.log('found the same language!');
-            return (
-              <JobItem 
-                key={job.id}
-                job={job}
-                handleClick={handleClick}
-              />
-            );
-          }
-          if(job.tools.includes(filter)) {
+          if (job.role === filter || job.level === filter || job.languages.includes(filter) || job.tools.includes(filter)) {
             return (
               <JobItem 
                 key={job.id}
