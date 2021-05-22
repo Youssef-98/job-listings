@@ -1,40 +1,9 @@
 import React from 'react';
 
-// Renders a singular job in the list
-const JobItem = ({ job, handleClick }) => {
+// Renders every job in the list
+const JobItem = ({ job, handleClick, tags }) => {
   // Gives a thicker, cyan-ish left border if the job is featured
-  const isFeatured = job => job.featured && 'border-l-4 ';
-
-  /* const handleClick = (item) => {
-    const jobArr = [];
-    job.languages.map(x => jobArr.push(x));
-    job.tools.map(x => jobArr.push(x));
-
-    if(job.role === item) {
-      console.log(item);
-    }
-    else if(job.level === item) {
-      console.log(item);
-    }
-    else if(jobArr.includes(item)) {
-      console.log(item);
-    }
-  } */
-
-  // map through languages or tools
-  const loopCategories = (items) => {
-    return items.map(item => {
-      return (
-        <div 
-          className="category"
-          key={item}
-          onClick={() => handleClick(item)}
-        >
-          {item}
-        </div>
-      )
-    });
-  }
+  const isFeatured = job => job.featured && 'border-l-4';
 
   // Fetching urls from a local json file didn't work as excpected like with an import
   // So I used the require + default combo to make it fully functional with the 'logo' property
@@ -96,10 +65,11 @@ const JobItem = ({ job, handleClick }) => {
         className="desktop:hidden mx-5"
       />
       <div className="flex desktop:justify-end desktop:items-center flex-wrap pr-10 pb-10 gap-y-3 desktop:pb-0">
-        <div onClick={() => handleClick(job.role)} className="category">{job.role}</div>
-        <div onClick={() => handleClick(job.level)} className="category">{job.level}</div>
-        {loopCategories(job.languages)}
-        {job.tools.length > 0 && loopCategories(job.tools)}
+        {
+          tags.map((tag, i) => {
+            return <div className="category" key={i} onClick={() => handleClick(tag)}>{tag}</div>
+          })
+        }
       </div>
     </div>
   )

@@ -28,29 +28,37 @@ const JobListings = () => {
   // removes all the filters
   const handleRemoveAll = () => setFilters([]);
 
+  let filterJobList = (tags, filters) => {
+    // filter the jobs based on the given tags
+    // using every method to check each filter with the actual filters from data.json
+    let filteredJobs = filters.every(f => tags.includes(f));
+    return filteredJobs;
+  }
+
   const renderFilteredJobs = () => {
     return data.map(job => {
+      // insert all possible tags in array
+      let tags = [job.role, job.level, ...(job.languages) || [], ...(job.tools) || []];
       if(filters.length === 0) {
         return (
           <JobItem 
             key={job.id}
             job={job}
             handleClick={handleClick}
+            tags={tags}
           />
         );
       }
-      else {
-        return filters.map(filter => {
-          if (job.role === filter || job.level === filter || job.languages.includes(filter) || job.tools.includes(filter)) {
-            return (
-              <JobItem 
-                key={job.id}
-                job={job}
-                handleClick={handleClick}
-              />
-            );
-          }
-        })
+      else if(filterJobList(tags, filters)) {
+        // return the filtered jobs
+        return (
+          <JobItem 
+            key={job.id}
+            job={job}
+            handleClick={handleClick}
+            tags={tags}
+          />
+        );
       }
     });
   }
