@@ -20,6 +20,7 @@ const JobListings = () => {
     let array = [...filters]; // make a separate copy of the array
     let index = array.indexOf(filter);
     if (index !== -1) {
+      //removes the filter and updates the state with the new array
       array.splice(index, 1);
       setFilters(array);
     }
@@ -30,14 +31,14 @@ const JobListings = () => {
 
   let filterJobList = (tags, filters) => {
     // filter the jobs based on the given tags
-    // using every method to check each filter with the actual filters from data.json
+    // using the 'every' array method to check each filter with the actual filters from data.json
     let filteredJobs = filters.every(f => tags.includes(f));
     return filteredJobs;
   }
 
   const renderFilteredJobs = () => {
     return data.map(job => {
-      // insert all possible tags in array
+      // insert all possible tags in the array
       let tags = [job.role, job.level, ...(job.languages) || [], ...(job.tools) || []];
       if(filters.length === 0) {
         return (
